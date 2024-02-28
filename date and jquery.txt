@@ -1,0 +1,57 @@
+$("#jobs").on("submit",(function(event){
+            event.preventDefault();
+            $.ajax({
+              url:"<?php echo base_url() ?>home/save_job",
+              type:"post",
+              data:new FormData(this),
+              contentType:false,
+              cache:false,
+              processData:false,
+              success:function(data){
+                   $("#message").html(data);
+                //alert(data);
+                location.reload(true);
+              }
+               
+            });
+            
+         }));
+
+
+
+date function 
+
+$curr_dates=date('Y-m-d',strtotime('-1 days'));
+
+add date in dynamic plus one day
+
+$last_sync_date=date('Y-m-d', strtotime($newtoken['last_sync_date']. ' + 1 days')); 
+
+inner join
+
+SELECT 
+ad_performance_daily.fb_account, ad_performance_daily.impression,ad_performance_daily.clicks,ad_performance_daily.reach,ad_performance_daily.spend,ad_performance_daily.cpp,ad_performance_daily.cpm,ad_performance_daily.cpc,ad_performance_daily.ctr,ad_performance_daily.date,fb_adsets.addsetname,fb_adsets.campaign_name,fb_adsets.addset_id,fb_adsets.startdate,fb_adsets.enddate,fb_creative.addsetid 
+FROM ad_performance_daily 
+INNER JOIN fb_creative ON fb_creative.get_creative_id = ad_performance_daily.ad_id 
+INNER JOIN fb_adsets ON fb_adsets.addset_id = fb_creative.addsetid
+WHERE ad_performance_daily.date>='$date1' AND ad_performance_daily.date<'$currdate' ORDER BY ad_performance_daily.impression DESC
+
+session message in codeigniter
+
+$session->setFlashdata('msgs', 'Package has been saved.');
+            return redirect()->to(base_url().'admin/add-package');
+
+view part message in codeigter 4
+
+                    <?php if(session()->getFlashdata('tomsgs')):?>
+                    <div class="alert alert-success">
+                       <?= session()->getFlashdata('tomsgs') ?>
+                    </div>
+                      <?php endif;?>
+                      <?php if(session()->getFlashdata('ermsgs')):?>
+                    <div class="alert alert-danger">
+                       <?= session()->getFlashdata('ermsgs') ?>
+                    </div>
+                      <?php endif;?>
+
+
